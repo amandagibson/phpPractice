@@ -1,3 +1,9 @@
+<?php
+
+$hour = 12;
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,20 +13,15 @@
 
   <h1>Lorem Ipsum</h1>
 
-  <?php
-
-  $hour = 12;
-
-  if ($hour < 12) {
-    echo "Good Morning!";
-  } elseif ($hour < 18) {
-    echo "Good afternoon!";
-  } elseif ($hour < 22) {
-    echo "Good evening!";
-  } else {
-    echo "Good Night!";
-  }
-  ?>
+  <?php if ($hour < 12): ?>
+    Good Morning!
+  <?php elseif ($hour < 18): ?>
+    Good Afternoon!
+  <?php elseif ($hour < 22): ?>
+    Good Evening!
+  <?php else: ?>
+    Good Night!
+  <?php endif; ?>
 
 </body>
 </html>
