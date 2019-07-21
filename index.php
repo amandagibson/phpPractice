@@ -1,27 +1,9 @@
 <?php
 
-$hour = 12;
+// PHP comments are not visible in page source
+// Create an array with a list of articles
+$articles = [ "First Post", "Another Post", "Read This!" ]; /* example of multiple lined comment */
 
-?>
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-</head>
-<body>
-
-  <h1>Lorem Ipsum</h1>
-
-  <?php if ($hour < 12): ?>
-    Good Morning!
-  <?php elseif ($hour < 18): ?>
-    Good Afternoon!
-  <?php elseif ($hour < 22): ?>
-    Good Evening!
-  <?php else: ?>
-    Good Night!
-  <?php endif; ?>
-
-</body>
-</html>
+foreach ($articles as $article) {
+    echo $article, ", ";
+}
