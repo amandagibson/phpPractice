@@ -1,19 +1,31 @@
 <?php
 
-$articles = [
-    [
-        "title" => "It was all a dream!",
-        "content" => "I used to read Word Up! magazine."
-    ],
-    [
-        "title" => "Birthdays was the worst days.",
-        "content" => "Now we sip champagne when we thirsty!"
-    ],
-    [
-        "title" => "You know very well who you are!",
-        "content" => "Don't let them hold you down."
-    ]
-];
+$db_host = "";
+$db_name = "";
+$db_user = "";
+$db_pass = ";
+
+$conn = mysqli_connect($db_host, $db_user, $db_pass, $db_name);
+
+if (mysqli_connect_error()) {
+    echo mysqli_connect_error();
+    exit;
+}
+
+echo "Connected successfully.";
+
+$sql = "SELECT *
+        FROM article
+        ORDER BY published_at;";
+
+$results = mysqli_query($conn, $sql);
+
+if ($results === false) {
+    echo mysqli_error($conn);
+} else {
+    $articles = mysqli_fetch_all($results, MYSQLI_ASSOC);
+}
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -28,6 +40,10 @@ $articles = [
     </header>
 
     <main>
+        <?php if (empty($articles)): ?>
+            <p>No articles found.</p>
+        <?php else: ?>
+
         <ul>
             <?php foreach ($articles as $article): ?>
                 <li>
@@ -38,6 +54,8 @@ $articles = [
                 </li>
             <?php endforeach; ?>
         </ul>
+
+        <?php endif; ?>
     </main>
 </body>
 </html>
