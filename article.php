@@ -12,7 +12,7 @@ if (mysqli_connect_error()) {
     exit;
 }
 
-if (is_numeric($_GET['id'])) {
+if (isset($_GET['id']) && is_numeric($_GET['id'])) {
 
   $sql = "SELECT *
           FROM article
