@@ -1,18 +1,6 @@
 <?php
 
-$db_host = "";
-$db_name = "";
-$db_user = "";
-$db_pass = "";
-
-$conn = mysqli_connect($db_host, $db_user, $db_pass, $db_name);
-
-if (mysqli_connect_error()) {
-    echo mysqli_connect_error();
-    exit;
-}
-
-echo "Connected successfully.";
+require 'includes/database.php';
 
 $sql = "SELECT *
         FROM article
@@ -27,19 +15,8 @@ if ($results === false) {
 }
 
 ?>
-<!DOCTYPE html>
-<html>
-<head>
-    <title>My Blog</title>
-    <meta charset="utf-8">
-</head>
-<body>
+<?php require 'includes/header.php'; ?>
 
-    <header>
-        <h1>My Blog</h1>
-    </header>
-
-    <main>
         <?php if (empty($articles)): ?>
             <p>No articles found.</p>
         <?php else: ?>
@@ -56,6 +33,5 @@ if ($results === false) {
         </ul>
 
         <?php endif; ?>
-    </main>
-</body>
-</html>
+
+<?php require 'includes/footer.php'; ?>
