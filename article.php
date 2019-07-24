@@ -12,18 +12,24 @@ if (mysqli_connect_error()) {
     exit;
 }
 
-echo "Connected successfully.";
+if (is_numeric($_GET['id'])) {
 
-$sql = "SELECT *
-        FROM article
-        WHERE id = " . $_GET['id'];
+  $sql = "SELECT *
+          FROM article
+          WHERE id = " . $_GET['id'];
 
-$results = mysqli_query($conn, $sql);
+  var_dump($sql);
 
-if ($results === false) {
-    echo mysqli_error($conn);
+  $results = mysqli_query($conn, $sql);
+
+  if ($results === false) {
+      echo mysqli_error($conn);
+  } else {
+      $article = mysqli_fetch_assoc($results);
+  }
+
 } else {
-    $article = mysqli_fetch_assoc($results);
+  $article = null;
 }
 
 ?>
