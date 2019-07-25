@@ -2,7 +2,21 @@
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-    var_dump($_POST);
+    require 'includes/database.php';
+
+    $sql = "INSERT INTO article (title, content, published_at)
+            VALUES ('" . $_POST['title'] . "','"
+                       . $_POST['content'] . "','"
+                       . $_POST['published_at'] . "')";
+
+    $results = mysqli_query($conn, $sql);
+
+    if ($results === false) {
+        echo mysqli_error($conn);
+    } else {
+        $id = mysqli_insert_id($conn);
+        echo "Inserted record with ID: $id";
+    }
 
 }
 ?>
